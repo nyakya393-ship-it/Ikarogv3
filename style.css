@@ -1,66 +1,108 @@
-/* =========================
-   RESET
-========================= */
+/*==========================
+  Ink Log Ver.2
+==========================*/
+
+:root{
+
+--bg:#121212;
+--card:#1e1e1e;
+
+--purple:#8a2be2;
+--green:#b7ff00;
+--yellow:#ffe600;
+--pink:#ff3cac;
+
+--text:#ffffff;
+--sub:#cfcfcf;
+
+--radius:22px;
+
+--shadow:
+0 10px 30px rgba(0,0,0,.35);
+
+--transition:.25s;
+
+}
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
 }
 
 html{
-    scroll-behavior:smooth;
+
+scroll-behavior:smooth;
+
 }
 
 body{
 
-    font-family:
-    "Hiragino Sans",
-    "Yu Gothic",
-    sans-serif;
+background:
+radial-gradient(circle at top left,#9333ea33,transparent 35%),
+radial-gradient(circle at bottom right,#b7ff0033,transparent 35%),
+var(--bg);
 
-    color:#fff;
+color:var(--text);
 
-    background:
-    radial-gradient(circle at 10% 20%,rgba(170,255,0,.15),transparent 18%),
-    radial-gradient(circle at 90% 10%,rgba(145,0,255,.15),transparent 15%),
-    radial-gradient(circle at 20% 90%,rgba(255,0,180,.10),transparent 20%),
-    #090b10;
+font-family:
+"Segoe UI",
+"Hiragino Sans",
+sans-serif;
 
-    min-height:100vh;
+min-height:100vh;
 
-    overflow-x:hidden;
+overflow-x:hidden;
 
 }
 
-
-/* =========================
-   インク背景
-========================= */
+/* インク背景 */
 
 #bgInk{
 
-    position:fixed;
+position:fixed;
 
-    inset:0;
+inset:0;
 
-    pointer-events:none;
+pointer-events:none;
 
-    z-index:-1;
+opacity:.12;
 
-    background-image:
+background-image:
 
-    radial-gradient(circle at 5% 10%,rgba(208,255,0,.15) 0 40px,transparent 41px),
+radial-gradient(circle,#b7ff00 3px,transparent 4px),
 
-    radial-gradient(circle at 90% 5%,rgba(140,0,255,.18) 0 35px,transparent 36px),
+radial-gradient(circle,#8a2be2 5px,transparent 6px),
 
-    radial-gradient(circle at 80% 90%,rgba(255,0,160,.12) 0 45px,transparent 46px),
+radial-gradient(circle,#ff3cac 4px,transparent 5px);
 
-    radial-gradient(circle at 15% 75%,rgba(0,255,160,.10) 0 25px,transparent 26px);
+background-size:
+
+220px 220px,
+280px 280px,
+180px 180px;
+
+animation:bgMove 40s linear infinite;
 
 }
 
+@keyframes bgMove{
 
+from{
+
+transform:translate(0,0);
+
+}
+
+to{
+
+transform:translate(-120px,-120px);
+
+}
+
+}
 /* =========================
    HEADER
 ========================= */
@@ -1041,5 +1083,57 @@ textarea{
     background:#c6ff00;
 
     color:#111;
+
+}
+/*====================
+ ロゴ
+====================*/
+
+.logo{
+
+padding:30px 24px 15px;
+
+}
+
+.logoMain{
+
+font-size:72px;
+
+font-weight:900;
+
+line-height:1;
+
+color:#fff;
+
+text-shadow:
+5px 5px 0 #000,
+0 0 20px #b7ff00,
+0 0 40px #8a2be2;
+
+letter-spacing:-3px;
+
+transform:rotate(-3deg);
+
+}
+
+.logoSub{
+
+display:inline-block;
+
+margin-top:12px;
+
+padding:8px 18px;
+
+background:#b7ff00;
+
+color:#000;
+
+font-weight:900;
+
+border-radius:999px;
+
+box-shadow:0 6px 15px rgba(0,0,0,.35);
+
+transform:rotate(-3deg);
 
 }
