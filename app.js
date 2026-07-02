@@ -1060,3 +1060,68 @@ function getBattleBadge(result){
     ? '<span class="badge win">WIN</span>'
     : '<span class="badge lose">LOSE</span>';
 }
+function getWeaponClass(weapon){
+  if(weapon.includes("シューター")) return "weapon-shooter";
+  if(weapon.includes("ローラー")) return "weapon-roller";
+  if(weapon.includes("チャージャー")) return "weapon-charger";
+  if(weapon.includes("スロッシャー")) return "weapon-slosher";
+  return "";
+}
+function getBattleBadge(result){
+  return result === "win"
+    ? '<span class="badge win">WIN</span>'
+    : '<span class="badge lose">LOSE</span>';
+}
+function openModal(index){
+
+  const battle = battles[index];
+
+  document.getElementById("modalBody").innerHTML = `
+    <h2>${battle.weapon}</h2>
+
+    <p>ルール：${battle.rule}</p>
+    <p>ステージ：${battle.stage}</p>
+
+    <p>KAD：${battle.kill} / ${battle.assist ?? 0} / ${battle.death}</p>
+    <p>塗りポイント：${battle.paint ?? 0}</p>
+
+    <p>結果：${battle.result}</p>
+  `;
+
+  document.getElementById("battleModal").classList.remove("hidden");
+}
+function closeModal(){
+  document.getElementById("battleModal").classList.add("hidden");
+}
+function renderBattleList(){
+
+  const container = document.getElementById("battleList");
+  container.innerHTML = "";
+
+  battles.forEach((battle, index) => {
+
+    const weaponClass = getWeaponClass(battle.weapon);
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    // 👉 カード全体クリックで詳細
+    card.onclick = () => openModal(index);
+
+    card.innerHTML = `
+      <div class="battle-header">
+        ${getBattleBadge(battle.result)}
+        <span class="${weaponClass}">${battle.weapon}</span>
+      </div>
+
+      <div class="battle-info">
+        <p>ルール：${battle.rule}</p>
+        <p>ステージ：${battle.stage}</p>
+        <p>KAD：${battle.kill} / ${battle.assist ?? 0} / ${battle.death}</p>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+renderBattleList();
